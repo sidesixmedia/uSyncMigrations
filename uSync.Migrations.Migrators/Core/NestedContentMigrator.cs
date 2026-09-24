@@ -9,6 +9,12 @@ namespace uSync.Migrations.Migrators.Core;
 
 [SyncMigrator(UmbConstants.PropertyEditors.Aliases.NestedContent, typeof(NestedContentConfiguration), IsDefaultAlias = true)]
 [SyncMigrator("Our.Umbraco.NestedContent")]
+// S6 just try adding out own property aliases here and see if usync.Migrations identifies NestedContentMigrator
+// This DOES make the association and avoid warnings in the migrations dashboard, but data still isn't converted in final files
+// ...trying to add typeof(NestedContentConfiguration) throws errors at runtime saying there cannot be multiple types via SyncMigratorAttribute
+// This migrator never seems to be used...things always route to NestedToBlockListMigrator...so will try annotating that instead?
+//[SyncMigrator("S6AccountingAddressEditor")] // typeof(NestedContentConfiguration)
+//[SyncMigrator("S6AccountingOrderLineItemsEditor")] // typeof(NestedContentConfiguration)
 [SyncDefaultMigrator]
 public class NestedContentMigrator : SyncPropertyMigratorBase
 {

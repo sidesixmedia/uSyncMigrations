@@ -18,6 +18,11 @@ public class MigratorsContext
     /// </summary>
     private Dictionary<string, ISyncPropertyMigrator> _migrators { get; set; } = new(StringComparer.OrdinalIgnoreCase);
 
+    /* S6 This is where our custom editor alias *should* be discovered, but the migrators are set as a dictionary which uses a single key 
+     * for each migrator, meaning the one we want is only discoverable by "Umbraco.NestedContent" but we have passed "S6AccountingAddressEditor"
+     * which is present in the Dict.Value.Editors collection but won't be matched by Dict.Key is "Umbraco.NestedContent". Dead-end w/o heavy
+     * core refactoring...guess we just target by ContentType_PropertyAlias instead?
+     */
     /// <summary>
     ///  get a migrator for a given editor alias, 
     /// </summary>

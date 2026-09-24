@@ -29,6 +29,7 @@ public class BlockListMigrationPlan : ISyncMigrationPlan
         SourceVersion = 8,
         PreferredMigrators = new Dictionary<string, string>
         {
+            // S6 Maybe we could inject our own editor aliases here instead of introducing an entirely new S6NestedContentMigration.cs plan?
             { UmbConstants.PropertyEditors.Aliases.NestedContent, "NestedToBlockListMigrator" },
         }
     };

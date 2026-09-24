@@ -128,8 +128,18 @@ internal abstract class SharedContentBaseHandler<TEntity> : SharedHandlerBase<TE
 
     protected virtual IEnumerable<XElement> ConvertPropertyValue(string itemType, string contentType, XElement property, SyncMigrationContext context)
     {
+        // S6 debug helper
+        if(property.Name.LocalName == "billingAddresses")
+        {
+            Console.WriteLine("breakpoint");
+        }
+        // usyncMigrations is identifying properties like s6CustomerGroup.BillingAddresses as BlockList rather than NestedContent!? Is that an error or is the data formatting wrong somehow?
         var editorAlias = context.ContentTypes.GetEditorAliasByTypeAndProperty(contentType, property.Name.LocalName)?.OriginalEditorAlias ?? string.Empty;
-
+        // S6 debug helper
+        if(editorAlias == "Umbraco.NestedContent" || editorAlias == "Umbraco.BlockList")
+        {
+            Console.WriteLine("breakpoint");
+        }
         try
         {
 

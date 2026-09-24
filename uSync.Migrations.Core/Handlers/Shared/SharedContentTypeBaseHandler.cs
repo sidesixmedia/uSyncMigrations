@@ -55,6 +55,14 @@ internal abstract class SharedContentTypeBaseHandler<TEntity> : SharedHandlerBas
             var definition = property.Element("Definition").ValueOrDefault(Guid.Empty);
             var alias = property.Element("Alias")?.ValueOrDefault(string.Empty) ?? string.Empty;
             var propertyName = property.Element("Name")?.ValueOrDefault(string.Empty) ?? string.Empty;
+                        
+            // S6 debug helper
+            if (alias == "rewards")
+            {
+                Console.WriteLine("breakpoint");
+                /* S6 This may be a possible place to ugly hack editorAlias by looking for our desired property alias */
+                //editorAlias = "Umbraco.NestedContent"; // Doubt this will work but could try
+            }
 
             // if this is a property splitting editor, we need to add the split properties
             var propertySplittingMigrator = context.Migrators.TryGetPropertySplittingMigrator(editorAlias);

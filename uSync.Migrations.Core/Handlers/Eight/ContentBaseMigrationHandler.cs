@@ -64,6 +64,15 @@ internal class ContentBaseMigrationHandler<TEntity> : SharedContentBaseHandler<T
 
     protected override IEnumerable<XElement> ConvertPropertyValue(string itemType, string contentType, XElement property, SyncMigrationContext context)
     {
+        // S6 debug helper
+        if(contentType.ToLower() == "s6order")
+        {
+            Console.WriteLine("breakpoint");
+            if(property.Name.LocalName.ToLower() == "billingaddresses" || property.Name.LocalName.ToLower() == "shippingaddresses")
+            {
+                Console.WriteLine("breakpoint");
+            }
+        }
         if (property.Elements("Value").Count() > 1)
         {
             // variant migration 

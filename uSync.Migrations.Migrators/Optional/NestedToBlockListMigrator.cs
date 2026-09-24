@@ -17,6 +17,10 @@ namespace uSync.Migrations.Migrators.Optional;
 
 [SyncMigrator(UmbConstants.PropertyEditors.Aliases.NestedContent)]
 [SyncMigrator("Our.Umbraco.NestedContent")]
+// S6 just try adding out own property aliases here and see if usync.Migrations identifies our special properties as Nested Content
+// These never get triggered as part of the "Migrators" list...this is all written so confusingly and with zero comments
+//[SyncMigrator("S6AccountingAddressEditor")] // typeof(NestedContentConfiguration)
+//[SyncMigrator("S6AccountingOrderLineItemsEditor")] // typeof(NestedContentConfiguration)
 [SyncMigratorVersion(7, 8)]
 public class NestedToBlockListMigrator : SyncPropertyMigratorBase
 {
